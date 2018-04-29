@@ -1,9 +1,8 @@
-package me.ccampo.uuid62.util
+package me.ccampo.uuid62.core
 
 /**
  * @author ccampo on 2018-04-29
  */
-import me.ccampo.uuid62.Base62
 import java.nio.ByteBuffer
 import java.util.*
 

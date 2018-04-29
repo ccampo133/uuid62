@@ -1,4 +1,4 @@
-package me.ccampo.uuid62
+package me.ccampo.uuid62.core
 
 import java.util.*
 import kotlin.experimental.or
