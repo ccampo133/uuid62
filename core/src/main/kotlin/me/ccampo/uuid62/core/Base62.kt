@@ -14,9 +14,6 @@ import kotlin.experimental.or
  * structure and algorithms overall remain the same.
  *
  * See NOTICE in the main repository directory for a copy of the original license.
- *
- * @author Chris Campo
- * @author Pavel Myasnov
  */
 object Base62 {
     /*
