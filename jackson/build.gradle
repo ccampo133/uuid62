@@ -2,6 +2,7 @@ buildscript {
     ext {
         kotlinVersion = '1.2.40'
         jacksonVersion = '2.9.5'
+        jacksonKotlinVersion = '2.9.4.1'
         assertJVersion = '3.9.0'
     }
     repositories {
@@ -42,6 +43,7 @@ dependencies {
     compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     compile 'org.jetbrains.kotlin:kotlin-reflect'
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonKotlinVersion"
     testCompile "org.assertj:assertj-core:$assertJVersion"
     compile 'org.jetbrains.kotlin:kotlin-reflect'
     testCompile "org.jetbrains.kotlin:kotlin-test"
