@@ -44,7 +44,6 @@ dependencies {
     compile 'org.jetbrains.kotlin:kotlin-reflect'
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonKotlinVersion"
-    compile 'org.jetbrains.kotlin:kotlin-reflect'
     testCompile "org.assertj:assertj-core:$assertJVersion"
     testCompile "org.jetbrains.kotlin:kotlin-test"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit"
