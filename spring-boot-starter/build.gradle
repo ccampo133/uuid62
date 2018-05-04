@@ -1,0 +1,28 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
+}
+
+apply plugin: 'java'
+
+jar {
+    baseName = 'uuid62-spring-boot-starter'
+    version = '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':spring')
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}

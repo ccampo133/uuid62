@@ -3,10 +3,8 @@ package me.ccampo.uuid62.sample
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.fasterxml.jackson.databind.ser.std.UUIDSerializer
 import me.ccampo.uuid62.core.util.toBase62String
-import me.ccampo.uuid62.jackson.UUID62Module
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.Bean
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -16,11 +14,7 @@ import java.net.URI
 import java.util.*
 
 @SpringBootApplication
-class SampleApplication {
-
-    @Bean
-    fun uuid62Module(): UUID62Module = UUID62Module()
-}
+class SampleApplication
 
 data class UUID62(val id: UUID)
 
@@ -28,6 +22,7 @@ data class RawUUID(@JsonSerialize(using = UUIDSerializer::class) val id: UUID)
 
 @RestController
 class SampleController {
+
 
     val uuids = mutableSetOf<UUID62>()
 
