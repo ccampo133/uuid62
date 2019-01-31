@@ -10,7 +10,12 @@ import java.util.UUID
  * most likely using a WebMvcConfigurer or WebMvcConfigurerAdapter.
  */
 class StringToUUIDConverter : Converter<String, UUID> {
-    override fun convert(source: String): UUID {
-        return if (source.contains('-')) UUID.fromString(source) else uuidFromBase62String(source)
-    }
+
+    /**
+     * Converts a base 62 string representation of a UUID into a [UUID] instance.
+     *
+     * If for some reason this fails, Spring will fall back on [org.springframework.beans.propertyeditors.UUIDEditor]
+     * to covert the string representation of the UUID to an actual [UUID] instance.
+     */
+    override fun convert(source: String): UUID = uuidFromBase62String(source)
 }

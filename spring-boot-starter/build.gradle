@@ -1,12 +1,10 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.1.RELEASE'
+        springBootVersion = '2.1.2.RELEASE'
+        springVersion = '5.1.4.RELEASE'
     }
     repositories {
         mavenCentral()
-    }
-    dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     }
 }
 
@@ -23,6 +21,8 @@ repositories {
 
 dependencies {
     compile project(':spring')
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "org.springframework.boot:spring-boot-autoconfigure:$springBootVersion"
+    compileOnly "org.springframework.boot:spring-boot-autoconfigure-processor:$springBootVersion"
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
