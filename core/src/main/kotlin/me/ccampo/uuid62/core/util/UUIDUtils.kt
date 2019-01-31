@@ -22,7 +22,9 @@ fun UUID.toBase62String(): String {
 }
 
 /**
- * Converts a Base62 encoded string to a UUID
+ * Converts a Base62 encoded string to a UUID.
+ *
+ * NOTE: Kotlin doesn't support static extensions; otherwise we'd use one here if they did!
  */
 fun uuidFromBase62String(id: String): UUID {
     return uuidFromByteArray(Base62.decode(id))

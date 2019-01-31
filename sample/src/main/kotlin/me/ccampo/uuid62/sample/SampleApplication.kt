@@ -5,10 +5,15 @@ import com.fasterxml.jackson.databind.ser.std.UUIDSerializer
 import me.ccampo.uuid62.core.util.toBase62String
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.net.URI
 import java.util.UUID
@@ -16,41 +21,39 @@ import java.util.UUID
 @SpringBootApplication
 class SampleApplication
 
-data class UUID62(val id: UUID)
-
-data class RawUUID(@JsonSerialize(using = UUIDSerializer::class) val id: UUID)
+data class UUID62(val id: UUID, @JsonSerialize(using = UUIDSerializer::class) val longId: UUID = id)
 
 @RestController
+@RequestMapping("/uuids")
 class SampleController {
 
+    val uuids = mutableSetOf<UUID>()
 
-    val uuids = mutableSetOf<UUID62>()
-
-    @GetMapping("/uuids/random")
-    fun getRandomUUID62(): UUID62 = UUID62(UUID.randomUUID())
-
-    @GetMapping("/uuids/random/raw")
-    fun getRandomRawUUID62(): RawUUID = RawUUID(UUID.randomUUID())
-
-    //TODO: this currently fails when the ID is base62 encoded; need to create a converter -ccampo 2018-05-03
-    @PostMapping("/uuids/{id}")
-    fun addCustomUUID(@PathVariable id: UUID): ResponseEntity<Unit> {
-        uuids.add(UUID62(id))
-        val location = URI("/uuids/${id.toBase62String()}")
-        return ResponseEntity.created(location).build()
+    @PostMapping
+    fun addUUID(@RequestParam id: UUID): ResponseEntity<UUID62> {
+        if (uuids.contains(id)) return ResponseEntity.status(HttpStatus.CONFLICT).build()
+        uuids.add(id)
+        return ResponseEntity.created(URI("/uuids/${id.toBase62String()}")).body(UUID62(id))
     }
 
-    @GetMapping("/uuids/{id}")
-    fun getUUID(@PathVariable id: UUID): UUID62 = uuids.first { it.id == id }
+    @PostMapping("/random")
+    fun addRandomUUID(): ResponseEntity<UUID62> = addUUID(UUID.randomUUID())
 
-    @GetMapping("/uuids/{id}/raw")
-    fun getRawUUID(@PathVariable id: UUID): RawUUID = RawUUID(uuids.first { it.id == id }.id)
+    @GetMapping("/{id}")
+    fun getUUID(@PathVariable id: UUID): ResponseEntity<UUID62> {
+        if (!uuids.contains(id)) return ResponseEntity.notFound().build()
+        return ResponseEntity.ok(UUID62(uuids.first { it == id }))
+    }
 
-    @GetMapping("/uuids")
-    fun geUUIDs(): List<UUID62> = uuids.toList()
+    @GetMapping
+    fun getAllUUIDs(): List<UUID62> = uuids.map { UUID62(it) }
 
-    @GetMapping("/uuids/raw")
-    fun getRawUUIDs(): List<RawUUID> = uuids.map { id -> RawUUID(id.id) }
+    @DeleteMapping("/{id}")
+    fun deleteUUID(@PathVariable id: UUID): ResponseEntity<Unit> {
+        if (!uuids.contains(id)) return ResponseEntity.notFound().build()
+        uuids.remove(id)
+        return ResponseEntity.noContent().build()
+    }
 }
 
 fun main(args: Array<String>) {
