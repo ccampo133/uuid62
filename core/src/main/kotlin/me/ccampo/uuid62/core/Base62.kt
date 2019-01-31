@@ -15,7 +15,7 @@ import kotlin.experimental.or
  *
  * See NOTICE in the main repository directory for a copy of the original license.
  */
-object Base62 {
+internal object Base62 {
     /*
      * This array is a lookup table that translates 6-bit positive integer index values into their "Base62 Alphabet"
      * equivalents as specified in Table 1 of RFC 2045 excepting special characters for 62 and 63 values.
