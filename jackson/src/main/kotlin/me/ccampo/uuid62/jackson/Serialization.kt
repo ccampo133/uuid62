@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer
 import me.ccampo.uuid62.core.util.toBase62String
 import me.ccampo.uuid62.core.util.uuidFromBase62String
 import java.io.IOException
-import java.util.*
+import java.util.UUID
 
 /**
  * JSON Serializer which converts a UUID to a base62 encoded string.

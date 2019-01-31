@@ -8,7 +8,7 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import me.ccampo.uuid62.core.util.toBase62String
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import java.util.*
+import java.util.UUID
 
 @JsonSerialize
 class SerializationTests {

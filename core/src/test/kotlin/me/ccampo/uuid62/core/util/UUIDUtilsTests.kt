@@ -2,7 +2,7 @@ package me.ccampo.uuid62.core.util
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import java.util.*
+import java.util.UUID
 
 /**
  * @author ccampo on 2018-05-03
