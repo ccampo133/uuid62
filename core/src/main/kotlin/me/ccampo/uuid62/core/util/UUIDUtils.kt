@@ -2,7 +2,7 @@ package me.ccampo.uuid62.core.util
 
 import me.ccampo.uuid62.core.Base62
 import java.nio.ByteBuffer
-import java.util.*
+import java.util.UUID
 
 /**
  * Converts this UUID to a byte array

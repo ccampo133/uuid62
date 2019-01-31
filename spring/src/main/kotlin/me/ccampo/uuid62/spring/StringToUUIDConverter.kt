@@ -2,7 +2,7 @@ package me.ccampo.uuid62.spring
 
 import me.ccampo.uuid62.core.util.uuidFromBase62String
 import org.springframework.core.convert.converter.Converter
-import java.util.*
+import java.util.UUID
 
 /**
  * Can be used with Spring MVC to convert the string representation of a UUID to an instance of [UUID].

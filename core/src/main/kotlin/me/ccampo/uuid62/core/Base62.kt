@@ -1,13 +1,13 @@
 package me.ccampo.uuid62.core
 
-import java.util.*
+import java.util.Arrays
 import kotlin.experimental.or
 
 /**
  * Provides Base62 encoding and decoding.
  *
- * The Base62 alphabet used by this algorithm in common is equivalent to the Base64 alphabet as defined by RFC 2045.
- * The only exception is a representations for 62 and 63 6-bit values. For that values special encoding is used.
+ * The Base62 alphabet used by this algorithm is equivalent to the Base64 alphabet as defined by RFC 2045. The only
+ * exceptions are representations for 62 and 63 6-bit values. For those values, a special encoding is used.
  *
  * NOTICE: This is a Kotlin implementation of Pavel Myasnov's original implementation
  * (see: https://github.com/glowfall/base62). Some parts of the code have been completely re-written however the
@@ -103,11 +103,11 @@ object Base62 {
             // Determine bits count needed to write to the stream
             val bitsCount: Int
             bitsCount = when {
-            // Compact form detected, write down only 5 bits
+                // Compact form detected, write down only 5 bits
                 bits and COMPACT_MASK == COMPACT_MASK -> 5
-            // For the last character write down all bits that needed for the completion of the stream
+                // For the last character write down all bits that needed for the completion of the stream
                 i >= lastCharPos -> out.bitsCountUpToByte
-            // In most cases the full 6-bits form will be used
+                // In most cases the full 6-bits form will be used
                 else -> 6
             }
 
