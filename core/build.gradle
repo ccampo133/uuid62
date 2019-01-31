@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlinVersion = '1.2.40'
+        kotlinVersion = '1.2.51'
         assertJVersion = '3.9.0'
     }
     repositories {
@@ -39,7 +39,7 @@ repositories {
 dependencies {
     compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     compile 'org.jetbrains.kotlin:kotlin-reflect'
-    testCompile "org.jetbrains.kotlin:kotlin-test"
-    testCompile "org.jetbrains.kotlin:kotlin-test-junit"
+    testCompile 'org.jetbrains.kotlin:kotlin-test'
+    testCompile 'org.jetbrains.kotlin:kotlin-test-junit'
     testCompile "org.assertj:assertj-core:$assertJVersion"
 }
