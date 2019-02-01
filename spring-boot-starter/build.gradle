@@ -9,8 +9,13 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'signing'
+
+group = 'me.ccampo'
+archivesBaseName = 'uuid62-spring-boot-starter'
+version = '0.1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 jar {
     baseName = 'uuid62-spring-boot-starter'
@@ -18,7 +23,6 @@ jar {
     manifest {
         attributes("Implementation-Title": "Spring Boot starter to autoconfigure Base62 UUID support.")
     }
-    version = '0.1.0-SNAPSHOT'
 }
 
 repositories {
@@ -33,46 +37,60 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            pom.project {
-                name "UUID62 Spring Boot Starter"
-                packaging "jar"
-                description "Spring Boot starter to autoconfigure Base62 UUID support"
-                url "https://github.com/ccampo133/uuid62"
-
-                scm {
-                    connection "scm:git:https://github.com/ccampo133/uuid62.git"
-                    developerConnection "scm:git:https://github.com/ccampo133/uuid62.git"
-                    url "https://github.com/ccampo133/uuid62.git"
-                }
-
-                licenses {
-                    license {
-                        name "The Apache Software License, Version 2.0"
-                        url "https://github.com/ccampo133/uuid62/blob/master/LICENSE"
-                    }
-                }
-
-                developers {
-                    developer {
-                        id "ccampo133"
-                        name "Chris Campo"
-                        email "ccampo.progs@gmail.com"
-                    }
-                }
-            }
-        }
-    }
+task javadocJar(type: Jar) {
+    classifier = "javadoc"
+    from javadoc
 }
+
+task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//
+//            pom.project {
+//                name "UUID62 Spring Boot Starter"
+//                packaging "jar"
+//                description "Spring Boot starter to autoconfigure Base62 UUID support"
+//                url "https://github.com/ccampo133/uuid62"
+//
+//                scm {
+//                    connection "scm:git:https://github.com/ccampo133/uuid62.git"
+//                    developerConnection "scm:git:https://github.com/ccampo133/uuid62.git"
+//                    url "https://github.com/ccampo133/uuid62.git"
+//                }
+//
+//                licenses {
+//                    license {
+//                        name "The Apache Software License, Version 2.0"
+//                        url "https://github.com/ccampo133/uuid62/blob/master/LICENSE"
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id "ccampo133"
+//                        name "Chris Campo"
+//                        email "ccampo.progs@gmail.com"
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
