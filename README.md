@@ -12,7 +12,7 @@ or `pom.xml`:
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-core:0.1.0'
+compile 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
 ```
 
 **Maven**
@@ -21,7 +21,7 @@ compile 'me.ccampo:uuid62-core:0.1.0'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-spring-boot-starter</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -66,7 +66,7 @@ Perhaps the simplest usage of `uuid62` is as a library. You can use `uuid62-core
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-core:0.1.0'
+compile 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
 ```
 
 **Maven**
@@ -75,7 +75,7 @@ compile 'me.ccampo:uuid62-core:0.1.0'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-core</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -137,7 +137,7 @@ See the Java unit tests in the `core` module for more examples of Java usage.
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-jackson:0.1.0'
+compile 'me.ccampo:uuid62-jackson:0.1.0-SNAPSHOT'
 ```
 
 **Maven**
@@ -146,7 +146,7 @@ compile 'me.ccampo:uuid62-jackson:0.1.0'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-jackson</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.0-SNAPSHOT</version>
 </dependency>
 ```
 

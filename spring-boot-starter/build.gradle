@@ -12,7 +12,7 @@ apply plugin: 'java'
 
 jar {
     baseName = 'uuid62-spring-boot-starter'
-    version = '0.1.0'
+    version = '0.1.0-SNAPSHOT'
 }
 
 repositories {

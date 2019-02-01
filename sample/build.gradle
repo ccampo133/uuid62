@@ -21,7 +21,7 @@ apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'uuid62-sample'
-    version = '0.1.0'
+    version = '0.1.0-SNAPSHOT'
 }
 
 compileKotlin {
