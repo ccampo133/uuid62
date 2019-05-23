@@ -11,7 +11,9 @@ buildscript {
     }
 }
 
-apply plugin: 'kotlin'
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.3.31"
+}
 
 jar {
     baseName = 'uuid62-core'
@@ -37,9 +39,9 @@ repositories {
 }
 
 dependencies {
-    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    compile 'org.jetbrains.kotlin:kotlin-reflect'
-    testCompile 'org.jetbrains.kotlin:kotlin-test'
-    testCompile 'org.jetbrains.kotlin:kotlin-test-junit'
-    testCompile "org.assertj:assertj-core:$assertJVersion"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    testImplementation "org.assertj:assertj-core:$assertJVersion"
 }
