@@ -1,5 +1,8 @@
 # uuid62
 
+[![Download](https://api.bintray.com/packages/ccampo133/public/uuid62/images/download.svg)](https://bintray.com/ccampo133/public/uuid62/_latestVersion)
+[![](https://github.com/ccampo133/uuid62/workflows/Build%20master/badge.svg)](https://github.com/{owner}/{repo}/actions) 
+
 A small Kotlin set of utilities to convert UUIDs to and from Base62 encoded strings. Perfect for URLs!
 
 Jackson and Spring Boot auto-configuration is supported out of the box!
@@ -12,7 +15,7 @@ or `pom.xml`:
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
 ```
 
 **Maven**
@@ -66,7 +69,7 @@ Perhaps the simplest usage of `uuid62` is as a library. You can use `uuid62-core
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
 ```
 
 **Maven**
@@ -137,7 +140,7 @@ See the Java unit tests in the `core` module for more examples of Java usage.
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-jackson:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-jackson:0.1.0-SNAPSHOT'
 ```
 
 **Maven**
