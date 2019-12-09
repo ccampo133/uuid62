@@ -5,13 +5,22 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply from: "${rootProject.projectDir}/gradle/java.gradle"
-apply from: "${rootProject.projectDir}/gradle/bintray.gradle"
+plugins {
+    id 'java'
+}
 
-group = 'me.ccampo'
-archivesBaseName = 'uuid62-spring-boot-starter'
-version = '0.1.0-SNAPSHOT'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+    withJavadocJar()
+}
+
+jar {
+    manifest {
+        attributes('Implementation-Title': 'Spring Boot starter to autoconfigure Base62 UUID support.')
+    }
+}
 
 dependencies {
     compile project(':spring')

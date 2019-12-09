@@ -15,8 +15,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Deploy to Bintray JCenter
+      - name: Deploy to Bintray and sync to Maven Central
         env:
-          JCENTER_API_KEY: ${{ secrets.JCENTER_API_KEY }}
+          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
+          SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
         run: |
+          ./gradlew -PbintrayUser="${BINTRAY_USER}" -PbintrayKey="${BINTRAY_API_KEY}" -PsonatypeUser="${SONATYPE_USER}" -PsonatypePassword="${SONATYPE_PASSWORD}" clean build dokkaJar bintrayUpload
 

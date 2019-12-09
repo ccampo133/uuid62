@@ -1,2 +1,1 @@
-//apply from: "${rootProject.projectDir}/gradle/java.gradle"
-//apply from: "${rootProject.projectDir}/gradle/bintray.gradle"
+// Empty... all build requirements are covered by the root build.gradle (for now)

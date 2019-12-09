@@ -15,7 +15,7 @@ or `pom.xml`:
 **Gradle**
 
 ```groovy
-implementation 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-core:0.1.0'
 ```
 
 **Maven**
@@ -24,7 +24,7 @@ implementation 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-spring-boot-starter</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
@@ -69,7 +69,7 @@ Perhaps the simplest usage of `uuid62` is as a library. You can use `uuid62-core
 **Gradle**
 
 ```groovy
-implementation 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-core:0.1.0'
 ```
 
 **Maven**
@@ -78,7 +78,7 @@ implementation 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-core</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
@@ -140,7 +140,7 @@ See the Java unit tests in the `core` module for more examples of Java usage.
 **Gradle**
 
 ```groovy
-implementation 'me.ccampo:uuid62-jackson:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-jackson:0.1.0'
 ```
 
 **Maven**
@@ -149,7 +149,7 @@ implementation 'me.ccampo:uuid62-jackson:0.1.0-SNAPSHOT'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-jackson</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
@@ -198,3 +198,8 @@ Windows:
     gradlew.bat build
     
 Additionally, each sub-module can be built in the same fashion.
+
+#### Publishing to Bintray
+
+    ./gradlew -PbintrayUser="..." -PbintrayKey="..." clean build dokkaJar bintrayUpload
+
