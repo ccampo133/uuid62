@@ -13,7 +13,7 @@ plugins {
 
 allprojects {
     group = 'me.ccampo'
-    version = '0.1.0'
+    version = '0.1.1'
     description = 'A small Kotlin library to convert UUIDs to Base62 encoded strings. Perfect for URLs!'
 
     repositories {
