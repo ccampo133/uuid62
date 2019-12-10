@@ -22,5 +22,5 @@ jobs:
           SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
         run: |
-          ./gradlew -PbintrayUser="${BINTRAY_USER}" -PbintrayKey="${BINTRAY_API_KEY}" -PsonatypeUser="${SONATYPE_USER}" -PsonatypePassword="${SONATYPE_PASSWORD}" clean build dokkaJar bintrayUpload
+          ./gradlew -PbintrayUser="${BINTRAY_USER}" -PbintrayKey="${BINTRAY_API_KEY}" -PsonatypeUser="${SONATYPE_USER}" -PsonatypePassword="${SONATYPE_PASSWORD}" clean build dokkaJar bintrayUpload --stacktrace
 
