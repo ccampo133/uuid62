@@ -3,36 +3,30 @@ buildscript {
         springBootVersion = '2.1.2.RELEASE'
         springVersion = '5.1.4.RELEASE'
     }
-    repositories {
-        mavenCentral()
-    }
 }
 
-apply plugin: 'java'
+plugins {
+    id 'java'
+}
 
-group = 'me.ccampo'
-archivesBaseName = 'uuid62-spring-boot-starter'
-version = '0.1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+    withJavadocJar()
+}
 
 jar {
-    baseName = 'uuid62-spring-boot-starter'
-    archivesBaseName = "uuid62-spring-boot-starter"
     manifest {
-        attributes("Implementation-Title": "Spring Boot starter to autoconfigure Base62 UUID support.")
+        attributes('Implementation-Title': 'Spring Boot starter to autoconfigure Base62 UUID support.')
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
     compile project(':spring')
-    compile "org.springframework:spring-webmvc:$springVersion"
-    compile "org.springframework.boot:spring-boot-autoconfigure:$springBootVersion"
+
+    implementation "org.springframework:spring-webmvc:$springVersion"
+    implementation "org.springframework.boot:spring-boot-autoconfigure:$springBootVersion"
     compileOnly "org.springframework.boot:spring-boot-autoconfigure-processor:$springBootVersion"
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

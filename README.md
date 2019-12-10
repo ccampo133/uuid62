@@ -1,5 +1,8 @@
 # uuid62
 
+[![Download](https://api.bintray.com/packages/ccampo133/public/uuid62/images/download.svg)](https://bintray.com/ccampo133/public/uuid62/_latestVersion)
+[![](https://github.com/ccampo133/uuid62/workflows/Build%20master/badge.svg)](https://github.com/{owner}/{repo}/actions) 
+
 A small Kotlin set of utilities to convert UUIDs to and from Base62 encoded strings. Perfect for URLs!
 
 Jackson and Spring Boot auto-configuration is supported out of the box!
@@ -12,7 +15,7 @@ or `pom.xml`:
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-core:0.1.0'
 ```
 
 **Maven**
@@ -21,7 +24,7 @@ compile 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-spring-boot-starter</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
@@ -66,7 +69,7 @@ Perhaps the simplest usage of `uuid62` is as a library. You can use `uuid62-core
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-core:0.1.0'
 ```
 
 **Maven**
@@ -75,7 +78,7 @@ compile 'me.ccampo:uuid62-core:0.1.0-SNAPSHOT'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-core</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
@@ -137,7 +140,7 @@ See the Java unit tests in the `core` module for more examples of Java usage.
 **Gradle**
 
 ```groovy
-compile 'me.ccampo:uuid62-jackson:0.1.0-SNAPSHOT'
+implementation 'me.ccampo:uuid62-jackson:0.1.0'
 ```
 
 **Maven**
@@ -146,7 +149,7 @@ compile 'me.ccampo:uuid62-jackson:0.1.0-SNAPSHOT'
 <dependency>
   <groupId>me.ccampo</groupId>
   <artifactId>uuid62-jackson</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
@@ -195,3 +198,8 @@ Windows:
     gradlew.bat build
     
 Additionally, each sub-module can be built in the same fashion.
+
+#### Publishing to Bintray
+
+    ./gradlew -PbintrayUser="..." -PbintrayKey="..." clean build dokkaJar bintrayUpload
+

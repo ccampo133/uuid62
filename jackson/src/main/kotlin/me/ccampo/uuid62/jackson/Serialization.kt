@@ -18,6 +18,10 @@ import java.util.UUID
  * JSON Serializer which converts a UUID to a base62 encoded string.
  */
 class UUID62Serializer : StdSerializer<UUID>(UUID::class.java) {
+
+    /**
+     * Writes a UUID to a base 62 string in JSON.
+     */
     @Throws(IOException::class)
     override fun serialize(value: UUID, gen: JsonGenerator, provider: SerializerProvider) {
         gen.writeString(value.toBase62String())
@@ -29,6 +33,10 @@ class UUID62Serializer : StdSerializer<UUID>(UUID::class.java) {
  * UUIDs as well as the canonical textual representations in hexadecimal.
  */
 class UUID62Deserializer : UUIDDeserializer() {
+
+    /**
+     * Convert's a JSON representation of a UUID (either base62 or standard) to a Java UUID
+     */
     @Throws(IOException::class)
     override fun deserialize(parser: JsonParser, context: DeserializationContext): UUID {
         val token = parser.currentToken
@@ -42,8 +50,7 @@ class UUID62Deserializer : UUIDDeserializer() {
 }
 
 /**
- * A custom Jackson [com.fasterxml.jackson.databind.Module] used to register
- * serialization/deserialization for base62 UUIDs.
+ * A custom Jackson module used to register serialization/deserialization for base62 UUIDs.
  */
 class UUID62Module : SimpleModule() {
     init {
@@ -53,6 +60,6 @@ class UUID62Module : SimpleModule() {
 }
 
 /**
- * Convenience extension function to register the [UUID62Module] with the given [ObjectMapper].
+ * Convenience extension function to register the uuid62 Jackson module with the given object mapper.
  */
 fun ObjectMapper.registerUUID62Module(): ObjectMapper = this.registerModule(UUID62Module())
