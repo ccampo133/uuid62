@@ -1,90 +1,83 @@
-plugins {
-    id 'maven'
+buildscript {
+    dependencies {
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.+'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.60'
+    }
 }
 
-//allprojects {
-//    plugins.withId('maven-publish') {
-//        publishing {
-//            repositories {
-//                maven {
-//                    name = 'bintray'
-//                    url = 'https://api.bintray.com/maven/ajoberstar/maven/reckon/;publish=1'
-//                    credentials {
-//                        username = System.env['BINTRAY_USER']
-//                        password = System.env['BINTRAY_KEY']
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+plugins {
+    id 'maven'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.60' apply false
+    id 'org.jetbrains.dokka' version '0.9.17' apply false
+}
 
-//plugins {
-//    id 'java'
-//    id 'maven'
-//    id 'jacoco'
-//    id 'signing'
-//}
-//
-//task javadocJar(type: Jar) {
-//    classifier = 'javadoc'
-//    from javadoc
-//}
-//
-//task sourcesJar(type: Jar) {
-//    classifier = 'sources'
-//    from sourceSets.main.allSource
-//}
-//
-//artifacts {
-//    archives javadocJar, sourcesJar
-//}
-//
-//signing {
-//    required = false
-//    sign configurations.archives
-//}
+allprojects {
+    group = 'me.ccampo'
+    version = '0.1.0'
 
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            beforeDeployment { final MavenDeployment deployment -> signing.signPom(deployment) }
-//
-//            repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-//                authentication(userName: ossrhUsername, password: ossrhPassword)
-//            }
-//
-//            snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-//                authentication(userName: ossrhUsername, password: ossrhPassword)
-//            }
-//
-//            pom.project {
-//                name 'UUID 62'
-//                packaging 'jar'
-//                description 'A small Kotlin set of utilities to convert UUIDs to and from Base62 encoded strings.'
-//                url 'https://github.com/ccampo133/uuid62'
-//
-//                scm {
-//                    connection 'scm:git:https://github.com/ccampo133/uuid62.git'
-//                    developerConnection 'scm:git:https://github.com/ccampo133/uuid62.git'
-//                    url 'https://github.com/ccampo133/uuid62.git'
-//                }
-//
-//                licenses {
-//                    license {
-//                        name 'Apache License 2.0'
-//                        url 'https://raw.githubusercontent.com/ccampo133/uuid62/master/LICENSE'
-//                    }
-//                }
-//
-//                developers {
-//                    developer {
-//                        id 'ccampo133'
-//                        name 'Chris Campo'
-//                        email 'ccampo.progs@gmail.com'
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+    repositories {
+        jcenter()
+    }
+}
+
+subprojects {
+    apply plugin: 'org.jetbrains.kotlin.jvm'
+
+    if (name != 'spring-boot-starter') {
+        apply plugin: 'org.jetbrains.dokka'
+
+        dokka {
+            outputFormat = 'javadoc'
+            outputDirectory = "${buildDir}/javadoc"
+        }
+
+        task dokkaJar(type: Jar, dependsOn: dokka) {
+            archiveClassifier.set('javadoc')
+            from dokka.outputDirectory
+        }
+
+        task sourcesJar(type: Jar) {
+            archiveClassifier.set('sources')
+            from sourceSets.main.allSource
+        }
+
+        artifacts {
+            archives dokkaJar
+            archives sourcesJar
+        }
+
+        compileKotlin {
+            kotlinOptions {
+                freeCompilerArgs = ['-Xjsr305=strict']
+                jvmTarget = '1.8'
+            }
+        }
+
+        compileTestKotlin {
+            kotlinOptions {
+                freeCompilerArgs = ['-Xjsr305=strict']
+                jvmTarget = '1.8'
+            }
+        }
+    }
+
+    archivesBaseName = "${rootProject.name}-${project.name}"
+
+    dependencies {
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+        implementation 'org.jetbrains.kotlin:kotlin-reflect'
+        testImplementation 'org.jetbrains.kotlin:kotlin-test'
+        testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+        testImplementation 'org.assertj:assertj-core:3.9.0'
+    }
+
+    apply from: "${rootProject.projectDir}/gradle/publishing.gradle"
+}
+
+dependencies {
+    // Make the root project archives configuration depend on every sub-project
+    subprojects.forEach {
+        archives(it)
+    }
+}
