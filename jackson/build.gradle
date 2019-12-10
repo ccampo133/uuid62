@@ -6,7 +6,7 @@ buildscript {
 }
 
 dependencies {
-    compile project(':core')
+    implementation project(':core')
     implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonKotlinVersion"
 }
