@@ -15,7 +15,7 @@ or `pom.xml`:
 **Gradle**
 
 ```groovy
-implementation 'me.ccampo:uuid62-core:0.1.1'
+implementation 'me.ccampo:uuid62-spring-boot-starter:0.1.1'
 ```
 
 **Maven**
